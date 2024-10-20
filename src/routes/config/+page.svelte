@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { Player } from '$lib/player';
 	import { players } from '$lib/stores/players';
 	import { buttonDelay } from '$lib/utils';
@@ -46,15 +47,15 @@
 			<div class="m-2">
 				<input bind:value={player.name} />
 				<button
-					on:click={playerSortUp(player)}
+					on:click={() => playerSortUp(player)}
 					class="p-3 text-xl bg-slate-400 rounded font-bold border border-black">&#8679;</button
 				>
 				<button
-					on:click={playerSortDown(player)}
+					on:click={() => playerSortDown(player)}
 					class="p-3 text-xl bg-slate-400 rounded font-bold border border-black">&#8681;</button
 				>
 				<button
-					on:click={removePlayer(player.name)}
+					on:click={() => removePlayer(player.name)}
 					class="p-3 text-xl m-1 rounded font-bold text-center border border-black {removedPlayerClick
 						? 'bg-red-400'
 						: 'bg-red-200'}">-</button
@@ -70,5 +71,12 @@
 				? 'bg-slate-400'
 				: 'bg-slate-200'}">+</button
 		>
+	</div>
+	<div class="m-5">
+			<button
+				class="w-full font-semibold text-white touch-auto py-1 px-1 border rounded 
+					bg-slate-400"
+				on:click={() => goto("./")}>Return home</button
+			>
 	</div>
 {/key}
