@@ -38,7 +38,7 @@
 	let updatePlayersClick = false;
 	function updatePlayers() {
 		updatePlayersClick = true;
-		goto('/funyahtzee/config');
+		goto('./config');
 		setTimeout(() => (updatePlayersClick = false), buttonDelay);
 		rerender += 1;
 	}
