@@ -73,10 +73,10 @@
 		>
 	</div>
 	<div class="m-5">
-			<button
-				class="w-full font-semibold text-white touch-auto py-1 px-1 border rounded 
+		<button
+			class="w-full font-semibold text-white touch-auto py-1 px-1 border rounded
 					bg-slate-400"
-				on:click={() => goto("./")}>Return home</button
-			>
+			on:click={() => goto('./')}>Return home</button
+		>
 	</div>
 {/key}
