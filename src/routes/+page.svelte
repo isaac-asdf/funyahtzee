@@ -19,7 +19,7 @@
 		chance
 	} from '$lib/scores';
 	import { players } from '$lib/stores/players';
-	import { buttonDelay } from '$lib/utils';
+	import { buttonDelay, toLocalStorage } from '$lib/utils';
 
 	let rerender = 0;
 
@@ -31,6 +31,7 @@
 		copy.sort((a, b) => b.getScore() - a.getScore());
 		copy[0].wins += 1;
 		$players.forEach((player) => player.resetScores());
+		toLocalStorage('players', JSON.stringify($players));
 		setTimeout(() => (endGameClick = false), buttonDelay);
 		rerender += 1;
 	}

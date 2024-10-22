@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { Player } from '$lib/player';
 	import { players } from '$lib/stores/players';
-	import { buttonDelay } from '$lib/utils';
+	import { buttonDelay, toLocalStorage } from '$lib/utils';
 	let newPlayerName = 'New Player';
 
 	let removedPlayerClick = false;
@@ -36,6 +36,7 @@
 			newPlayerName = 'New Player';
 			rerender += 1;
 		}
+		toLocalStorage('players', JSON.stringify($players));
 		setTimeout(() => (newPlayerClick = false), buttonDelay);
 	}
 </script>
