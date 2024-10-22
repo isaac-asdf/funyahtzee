@@ -3,7 +3,9 @@ import { browser } from '$app/environment';
 export const buttonDelay = 80;
 export function fromLocalStorage(storageKey: string, fallbackValue: string | null): string | null {
 	if (browser) {
-		return window.localStorage.getItem(storageKey);
+		const storeVal = window.localStorage.getItem(storageKey);
+		if (storeVal == null) return fallbackValue;
+		else return storeVal;
 	}
 
 	return fallbackValue;
