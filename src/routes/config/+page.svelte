@@ -76,7 +76,7 @@
 		<button
 			class="w-full font-semibold text-white touch-auto py-1 px-1 border rounded
 					bg-slate-400"
-			on:click={() => goto('./')}>Return home</button
+			on:click={() => goto('{base}')}>Return home</button
 		>
 	</div>
 {/key}

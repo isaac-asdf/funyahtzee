@@ -38,7 +38,7 @@
 	let updatePlayersClick = false;
 	function updatePlayers() {
 		updatePlayersClick = true;
-		goto('/config');
+		goto('{base}/config');
 		setTimeout(() => (updatePlayersClick = false), buttonDelay);
 		rerender += 1;
 	}
