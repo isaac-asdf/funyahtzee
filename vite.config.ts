@@ -8,12 +8,6 @@ export default defineConfig({
 		SvelteKitPWA({
 			registerType: 'autoUpdate',
 			workbox: {
-				runtimeCaching: [
-					{
-						handler: 'CacheFirst',
-						urlPattern: ''
-					}
-				],
 				globPatterns: ['**/*.{js,css,html,ico,png,svg}']
 			}
 		})
