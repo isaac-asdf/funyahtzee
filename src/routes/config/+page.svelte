@@ -35,6 +35,8 @@
 			console.log($players);
 			newPlayerName = 'New Player';
 			rerender += 1;
+		} else {
+			alert("Change name of New Player before adding");
 		}
 		toLocalStorage('players', JSON.stringify($players));
 		setTimeout(() => (newPlayerClick = false), buttonDelay);
@@ -46,7 +48,7 @@
 	<div>
 		{#each $players as player}
 			<div class="m-2">
-				<input bind:value={player.name} />
+				<input class="p-2 border rounded border-black" bind:value={player.name} />
 				<button
 					on:click={() => playerSortUp(player)}
 					class="p-3 text-xl bg-slate-400 rounded font-bold border border-black">&#8679;</button
@@ -65,7 +67,7 @@
 		{/each}
 	</div>
 	<div class="m-2">
-		<input class="text-slate-400 italics" bind:value={newPlayerName} />
+		<input class="p-2 border rounded border-black text-slate-400 italics" bind:value={newPlayerName} />
 		<button
 			on:click={() => newPlayer()}
 			class="p-3 text-xl rounded font-bold text-center border border-black {newPlayerClick
