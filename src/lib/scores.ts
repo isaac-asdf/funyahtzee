@@ -9,7 +9,7 @@ export const fourOfAKind = Array.from(Array(31), (_, i) => i + 5);
 export const fullHouse = [25];
 export const smallStraight = [30];
 export const largeStraight = [40];
-export const yahtzee = Array.from(Array(5), (_, i) => {
+export const yahtzee = Array.from(Array(6), (_, i) => {
 	if (i == 0) return 50;
 	else {
 		return i * 100 + 50;

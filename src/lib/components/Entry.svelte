@@ -22,7 +22,6 @@
 		else if(selected == 0) styling += "bg-slate-200";
 		else if(selected > 0 && !isTopScore) styling += "bg-green-200";
 		else if(selected > 0 && isTopScore) {
-			console.log(options);
 			// calculate position in options array
 			const index = options.indexOf(selected) + 1;
 			if(index == 1) styling += "bg-yellow-400";

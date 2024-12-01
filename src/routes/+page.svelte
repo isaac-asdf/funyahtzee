@@ -22,6 +22,7 @@
 	import { buttonDelay, toLocalStorage } from '$lib/utils';
 
 	let rerender = 0;
+	$: nextPlayer = 0;
 
 	let endGameClick = false;
 	function endGame() {
@@ -45,6 +46,11 @@
 	}
 
 	let resetClick = false;
+	function getNextPlayer(i: number): number {
+		let next = i + 1;
+		if(next >= $players.length) next = 0;
+		return next;
+	}
 	function reset() {
 		resetClick = true;
 		if (confirm('Reset all statistics?')) {
@@ -62,17 +68,18 @@
 		<table>
 			<thead>
 				<td class="sticky left-0 bg-white"></td>
-				{#each $players as player}
-					<td class="text-center">{player.name}</td>
+				{#each $players as player, i}
+					<td class="text-center {i == nextPlayer ? 'bg-yellow-200 rounded' : ''}">{player.name}</td>
 				{/each}
 			</thead>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">1</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.ones = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={ones}
 						/>
@@ -81,11 +88,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">2</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.twos = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={twos}
 						/>
@@ -94,11 +102,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">3</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.threes = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={threes}
 						/>
@@ -107,11 +116,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">4</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.fours = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={fours}
 						/>
@@ -120,11 +130,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">5</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.fives = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={fives}
 						/>
@@ -133,11 +144,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">6</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.sixes = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={sixes}
 						/>
@@ -166,11 +178,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">3 of a kind</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.threeOfAKind = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={threeOfAKind}
 						/>
@@ -179,11 +192,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">4 of a kind</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.fourOfAKind = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={fourOfAKind}
 						/>
@@ -192,11 +206,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">Full House</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.fullHouse = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={fullHouse}
 						/>
@@ -205,11 +220,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">Small Straight</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.smallStraight = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={smallStraight}
 						/>
@@ -218,11 +234,13 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">Large Straight</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
-								player.largeStraight = value;
+									player.largeStraight = value;
+									nextPlayer = getNextPlayer(i);
+									nextPlayer = getNextPlayer(i);
 							}}
 							options={largeStraight}
 						/>
@@ -231,14 +249,15 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">Yahtzee!</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								if (value > player.yahtzee) player.yahtzeeCount += 1;
-								else {
+								else if(value < player.yahtzee) {
 									player.yahtzeeCount -= 1;
 								}
+								nextPlayer = getNextPlayer(i);
 								player.yahtzee = value;
 							}}
 							options={yahtzee}
@@ -248,11 +267,12 @@
 			</tr>
 			<tr class="border border-black">
 				<th class="sticky border border-black left-0 bg-slate-400">Chance</th>
-				{#each $players as player}
+				{#each $players as player, i}
 					<td>
 						<Entry
 							onEntry={(value) => {
 								player.chance = value;
+								nextPlayer = getNextPlayer(i);
 							}}
 							options={chance}
 						/>
